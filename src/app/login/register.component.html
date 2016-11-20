@@ -1,0 +1,77 @@
+<div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <div class="panel-title">Sign Up</div>
+            <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="loginlink" [routerLink]="['/login']">Login</a></div>
+        </div>
+        <div class="panel-body">
+            <form [formGroup]="registerForm" (ngSubmit)="register()" class="form-horizontal" role="form">
+
+                <div id="signupalert" style="display:none" class="alert alert-danger">
+                    <p>Error:</p>
+                    <span></span>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-md-3 control-label">Email</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" [formControl]="email" name="email" placeholder="Email Address">
+                        <div [hidden]="email.valid || email.untouched">
+                            <div [hidden]="!email.hasError('pattern')">Must be a valid email address</div>
+                            <div [hidden]="!email.hasError('required')">Email is required.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="username" class="col-md-3 control-label">Username</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" [formControl]="username" name="username" placeholder="Username">
+                        <div [hidden]="username.valid || username.untouched">
+                            <div [hidden]="!username.hasError('minLength')">Minimum 3 characters</div>
+                            <div [hidden]="!username.hasError('maxLength')">Maximum 20 characters</div>
+                            <div [hidden]="!username.hasError('required')">Username is required.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="firstname" class="col-md-3 control-label">First Name</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" [formControl]="firstname" name="firstname" placeholder="First Name">
+                        <div [hidden]="firstname.valid || firstname.untouched">
+                            <div [hidden]="!firstname.hasError('maxLength')">Maximum 20 characters</div>
+                            <div [hidden]="!firstname.hasError('required')">First Name is required.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastname" class="col-md-3 control-label">Last Name</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" [formControl]="lastname" name="lastname" placeholder="Last Name">
+                        <div [hidden]="lastname.valid || lastname.untouched">
+                            <div [hidden]="!lastname.hasError('maxLength')">Maximum 20 characters</div>
+                            <div [hidden]="!lastname.hasError('required')">Last Name is required.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-md-3 control-label">Password</label>
+                    <div class="col-md-9">
+                        <input type="password" class="form-control" [formControl]="password" name="password" placeholder="Password">
+                        <div [hidden]="password.valid || password.untouched">
+                            <div [hidden]="!password.hasError('minLength')">Minimum 6 characters</div>
+                            <div [hidden]="!password.hasError('maxLength')">Maximum 20 characters</div>
+                            <div [hidden]="!password.hasError('required')">Password is required.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-9">
+                        <button id="btn-signup" type="submit" [disabled]="!registerForm.valid" class="btn btn-info"><i class="icon-hand-right"></i>Sign Up</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
