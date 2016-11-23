@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import { Configuration } from '../configuration/index';
-import { User } from '.';
+import { User, Authorization, Configuration } from '../.';
 
 @Injectable()
 export class UserService {
@@ -25,8 +24,12 @@ export class UserService {
       .catch(this.handleError);
   }
 
-  public GetSingle = (id: number): Observable<User> => {
-    return this._http.get(this.actionUrl + id)
+  public GetSingle = (id: string): Observable<User> => {
+
+  let jwt = localStorage.getItem('jwt')
+  this.headers.append('Authorization', jwt);
+
+    return this._http.get(this.actionUrl + id, { headers: this.headers})
       .map((response: Response) => <User>response.json())
       .catch(this.handleError);
   }
@@ -39,10 +42,10 @@ export class UserService {
       .catch(this.handleError);
   }
 
-  public Login = (credentials: Object): Observable<User> => {
+  public Login = (credentials: Object): Observable<Authorization> => {
     let toLogin = JSON.stringify(credentials);
 
-    return this._http.post(this.actionUrl, toLogin, { headers: this.headers })
+    return this._http.post(this.actionUrl + "/login", toLogin, { headers: this.headers })
       .map((response: Response) => <User>response.json())
       .catch(this.handleError);
   }

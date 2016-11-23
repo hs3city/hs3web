@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+
 import { UserService } from './user/index';
+import { AuthorizationService } from './authorization/index';
 import { Configuration } from './configuration/index'
 
 /**
@@ -20,7 +22,7 @@ export class SharedModule {
     static forRoot(): ModuleWithProviders {
         return {
             ngModule: SharedModule,
-            providers: [UserService, Configuration]
+            providers: [UserService, AuthorizationService, Configuration]
         };
     }
 }

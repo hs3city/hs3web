@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators
+} from '@angular/forms';
+import { AuthorizationService } from '../shared/index';
 
 
 @Component({
@@ -9,14 +17,40 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  authorizationService: AuthorizationService;
   router: Router;
+  loginForm: FormGroup;
+  emailOrUsername: FormControl;
+  password: FormControl;
 
-  constructor(_router: Router) { 
+  constructor(builder: FormBuilder, _router: Router, _authorizationService: AuthorizationService) {
     this.router = _router;
+    this.authorizationService = _authorizationService;
+    this.emailOrUsername = new FormControl('', [
+      Validators.required
+    ])
+    this.password = new FormControl('', [
+      Validators.required
+    ])
+    this.loginForm = builder.group({
+      email: this.emailOrUsername,
+      username: this.emailOrUsername,
+      password: this.password
+    })
+
+  }
+
+  login() {
+     
+    if(this.authorizationService.login(this.loginForm.value)){
+      
+    }else{
+        this.loginForm.errors['loginError'] = true;
+    }
   }
 
   ngOnInit() {
-    
+
   }
 
 }
