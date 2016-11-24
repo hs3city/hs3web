@@ -1,4 +1,5 @@
 export * from './authorization/index';
+export * from './auth/index';
 export * from './configuration/index';
 export * from './user/index';
 export * from './sidebar/index';

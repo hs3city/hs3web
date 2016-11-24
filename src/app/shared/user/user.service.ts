@@ -1,7 +1,8 @@
+// import { Auth } from '../.';
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import { User, Authorization, Configuration } from '../.';
+import { User, Auth, Configuration } from '../.';
 
 @Injectable()
 export class UserService {
@@ -42,7 +43,7 @@ export class UserService {
       .catch(this.handleError);
   }
 
-  public Login = (credentials: Object): Observable<Authorization> => {
+  public Login = (credentials: Object): Observable<Auth> => {
     let toLogin = JSON.stringify(credentials);
 
     return this._http.post(this.actionUrl + "/login", toLogin, { headers: this.headers })

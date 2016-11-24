@@ -7,7 +7,7 @@ import {
   ReactiveFormsModule,
   Validators
 } from '@angular/forms';
-import { AuthorizationService } from '../shared/index';
+import { AuthService } from '../shared/index';
 
 
 @Component({
@@ -17,13 +17,13 @@ import { AuthorizationService } from '../shared/index';
 })
 export class LoginComponent implements OnInit {
 
-  authorizationService: AuthorizationService;
+  authorizationService: AuthService;
   router: Router;
   loginForm: FormGroup;
   emailOrUsername: FormControl;
   password: FormControl;
 
-  constructor(builder: FormBuilder, _router: Router, _authorizationService: AuthorizationService) {
+  constructor(builder: FormBuilder, _router: Router, _authorizationService: AuthService) {
     this.router = _router;
     this.authorizationService = _authorizationService;
     this.emailOrUsername = new FormControl('', [

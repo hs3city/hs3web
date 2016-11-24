@@ -1,11 +1,10 @@
+import { UserService } from './../user/user.service';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
-import { User, UserService } from '../.';
 
 @Injectable()
-export class AuthorizationService {
+export class AuthService {
 
-    userService: UserService;
+  userService: UserService;
 
     constructor(private _userService: UserService) {
         this.userService = _userService;
