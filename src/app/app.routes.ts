@@ -1,11 +1,11 @@
-import { Routes } from '@angular/router';
-import { LoginComponent } from './login/index';
-import { RegisterComponent } from './login/index';
-import { HomeComponent } from './home/index';
+import { ModuleWithProviders } from '@angular/core';
+import { ProjectsComponent } from './projects/projects.component';
+import { MembersComponent } from './members/members.component';
+import { AuthGuard } from './shared/guards/auth.guard';
+import { Routes, RouterModule } from '@angular/router';
 
 export const routes: Routes = [
-    { path: 'index', component: HomeComponent },
-    { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent },
-    { path: '**', component: HomeComponent }
+    { path: '**', redirectTo: 'home' }
 ];
+
+export const routing: ModuleWithProviders = RouterModule.forRoot(routes);

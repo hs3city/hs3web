@@ -1,8 +1,9 @@
-// import { Auth } from '../.';
+import { Auth } from './../auth/auth';
+import { User } from './user';
+import { Configuration } from './../configuration/configuration';
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import { User, Auth, Configuration } from '../.';
 
 @Injectable()
 export class UserService {
@@ -17,10 +18,15 @@ export class UserService {
     this.headers = new Headers();
     this.headers.append('Content-Type', 'application/json');
     this.headers.append('Accept', 'application/json');
+    this.headers.append('Authorization', '');
   }
 
   public GetAll = (): Observable<User[]> => {
-    return this._http.get(this.actionUrl)
+
+  let jwt = localStorage.getItem('jwt')
+  this.headers.set('Authorization', jwt);
+
+    return this._http.get(this.actionUrl, {headers: this.headers})
       .map((response: Response) => <User[]>response.json())
       .catch(this.handleError);
   }
@@ -28,7 +34,7 @@ export class UserService {
   public GetSingle = (id: string): Observable<User> => {
 
   let jwt = localStorage.getItem('jwt')
-  this.headers.append('Authorization', jwt);
+  this.headers.set('Authorization', jwt);
 
     return this._http.get(this.actionUrl + id, { headers: this.headers})
       .map((response: Response) => <User>response.json())

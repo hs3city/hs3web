@@ -1,15 +1,15 @@
 import { NavigationModule } from './../navigation/navigation.module';
-import { PublicHomeComponent } from './public-home/public-home.component';
+import { ProjectFormComponent } from './project-form/project-form.component';
+import { ProjectsComponent } from './projects.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { HomeComponent } from './home.component';
 
 @NgModule({
     imports: [CommonModule, RouterModule, NavigationModule],
-    declarations: [HomeComponent, PublicHomeComponent],
-    exports: [HomeComponent, PublicHomeComponent]
+    declarations: [ProjectsComponent, ProjectFormComponent],
+    exports: [ProjectsComponent]
 })
 
-export class HomeModule { }
+export class ProjectsModule { }
 

@@ -1,3 +1,6 @@
+import { AuthService } from './../shared/auth/auth.service';
+import { NavigationComponent } from './../navigation/navigation.component';
+import { UserService } from './../shared/user/user.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _userService: UserService, private _authService: AuthService) {
+
+  }
 
   ngOnInit() {
+    console.log(this._authService.isLoggedIn());
   }
 
 }
