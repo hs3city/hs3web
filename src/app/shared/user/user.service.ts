@@ -2,8 +2,9 @@ import { Auth } from './../auth/auth';
 import { User } from './user';
 import { Configuration } from './../configuration/configuration';
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
+
 
 @Injectable()
 export class UserService {
@@ -37,6 +38,23 @@ export class UserService {
   this.headers.set('Authorization', jwt);
 
     return this._http.get(this.actionUrl + id, { headers: this.headers})
+      .map((response: Response) => <User>response.json())
+      .catch(this.handleError);
+  }
+
+  public GetByUsername = (username: string): Observable<User> => {
+
+  let jwt = localStorage.getItem('jwt')
+  this.headers.set('Authorization', jwt);
+  let filter = "filter[where][username]=" + username
+  
+  let searchParams = new URLSearchParams(filter)
+  let options = new RequestOptions({
+    headers: this.headers,
+    search: searchParams
+  })
+
+    return this._http.get(this.actionUrl + 'findone', options)
       .map((response: Response) => <User>response.json())
       .catch(this.handleError);
   }

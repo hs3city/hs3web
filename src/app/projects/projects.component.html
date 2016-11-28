@@ -2,12 +2,13 @@
 
 	<!-- Navigation -->
 	<app-navigation></app-navigation>
+	<router-outlet></router-outlet>
 
 	<div id="page-wrapper">
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">Project</h1> 
-				<button class="btn btn-default" (click)="add_new_project()">Add new project</button>
+				<button class="btn btn-default" [routerLink]="['new']">Add new project</button>
 			</div>
 			<!-- /.col-lg-12 -->
 		</div>

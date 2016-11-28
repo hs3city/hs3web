@@ -6,8 +6,20 @@
 	<div id="page-wrapper">
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Content!</h1>
+				<h1 class="page-header">Hackerspace members</h1>
 			</div>
+			<table class="table table-striped">
+				<tr>
+					<td>ID</td>
+					<td>Name</td>
+					<td>Username</td>
+				</tr>
+				<tr *ngFor="let user of users; let i = index">
+					<td>{{i}}</td>
+					<td>{{user.firstname + " " + user.lastname}}</td>
+					<td>{{user.username}}</td>
+				</tr>
+			</table>
 			<!-- /.col-lg-12 -->
 		</div>
 	</div>

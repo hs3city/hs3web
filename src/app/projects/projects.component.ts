@@ -1,5 +1,13 @@
+import { ProjectService, Project } from './../shared/project/index';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators
+} from '@angular/forms';
 
 @Component({
   selector: 'app-projects',
@@ -8,13 +16,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectsComponent implements OnInit {
 
-  constructor(private _router: Router) { }
+  private projects: Project[]
+
+  constructor(private _router: Router, private _projectService: ProjectService) {
+
+   }
 
   ngOnInit() {
-  }
-
-  add_new_project(event){
-    this._router.navigate(['new-project'])
   }
 
 }

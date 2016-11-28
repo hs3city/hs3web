@@ -1,5 +1,6 @@
 import { UserService } from './../shared/user/user.service';
 import { Component, OnInit } from '@angular/core';
+import { User } from '../shared/index'
 
 @Component({
   selector: 'app-members',
@@ -8,16 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MembersComponent implements OnInit {
 
-  constructor(private _userService: UserService) {
-    
-   }
+  private users: User[];
 
-  ngOnInit() {
+  constructor(private _userService: UserService) {
     this._userService.GetAll().subscribe((result) => {
-      console.log(result)
+      this.users = result;
     }, (error) => {
       console.log(error)
     });
+   }
+
+  ngOnInit() {
+    console.log(this.users)
   }
 
 }
