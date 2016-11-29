@@ -19,8 +19,10 @@ export class ProjectsComponent implements OnInit {
   private projects: Project[]
 
   constructor(private _router: Router, private _projectService: ProjectService) {
-
-   }
+    this._projectService.GetAllWithOwners().subscribe((result) => {
+      this.projects = result
+    })
+  }
 
   ngOnInit() {
   }

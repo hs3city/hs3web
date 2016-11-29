@@ -39,9 +39,9 @@ export class ProjectFormComponent implements OnInit {
 
   save() {
       let project: Project = this.projectForm.value;
-      project.owner = localStorage.getItem('currentUser');
+      project.ownerId = localStorage.getItem('currentUser');
       this._projectService.Add(project).subscribe((result) => {
-        console.log(result)
+        this._router.navigate(['../projects'])
       }, (err) => {
         console.log(err);
       })

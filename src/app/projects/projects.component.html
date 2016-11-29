@@ -7,10 +7,22 @@
 	<div id="page-wrapper">
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Project</h1> 
-				<button class="btn btn-default" [routerLink]="['new']">Add new project</button>
+				<h1 class="page-header">Projects</h1>
 			</div>
 			<!-- /.col-lg-12 -->
 		</div>
+		<table class="table table-striped">
+			<tr>
+				<td>Name</td>
+				<td>Owner</td>
+				<td>Description</td>
+			</tr>
+			<tr *ngFor="let project of projects">
+				<td><a [routerLink]="[project.id]">{{project.name}}</a></td>
+				<td>{{project.owner?.username}}</td>
+				<td>{{project.description}}</td>
+			</tr>
+		</table>
+		<button class="btn btn-default" [routerLink]="['new']">Start new project</button>
 	</div>
 </div>

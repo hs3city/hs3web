@@ -5,10 +5,11 @@ import { ProjectsComponent } from './projects.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { ProjectPageComponent } from './project-page/project-page.component';
 
 @NgModule({
     imports: [CommonModule, RouterModule, NavigationModule, FormsModule, ReactiveFormsModule],
-    declarations: [ProjectsComponent, ProjectFormComponent],
+    declarations: [ProjectsComponent, ProjectFormComponent, ProjectPageComponent],
     exports: [ProjectsComponent]
 })
 
